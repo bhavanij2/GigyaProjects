@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "module": "es6",
+    "moduleResolution": "node",
+    "newLine": "LF",
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "target": "es5",
+    "lib": ["dom", "es2015", "es2016.array.include"],
+    "jsx": "preserve",
+    "outDir": "dist",
+    "isolatedModules": false,
+    "removeComments": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*", "__tests__/**/*"]
+}

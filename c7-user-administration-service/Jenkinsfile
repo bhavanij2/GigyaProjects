@@ -1,0 +1,74 @@
+pipeline {
+    agent any
+    environment {
+      NPM_E_AUTH_TOKEN = credentials('npm-e-auth-token')
+      NODE_ENV = 'development'
+      CF_PASSWORD = credentials('agents-of-shield-ci-password')
+      PROD_PING_CLIENT_CREDS = credentials('prod-ping-client')
+      PATH = "/usr/share/node/bin:$PATH"
+    }
+    stages {
+        stage('build') {
+            steps {
+              nodejs(nodeJSInstallationName: 'Node 10.5.0') {
+                  sh 'npm config set registry https://registry.npmjs.org'
+                  sh 'npm config set @monsantoit:registry https://npm.platforms.engineering'
+                  sh 'npm config set //npm.platforms.engineering/:_authToken $NPM_E_AUTH_TOKEN'
+                  sh 'npm config list'
+                  sh 'npm install'
+                  sh 'npm run build'
+                  sh 'rm -rf .git'
+              }
+            }
+        }
+        stage('test') {
+            steps {
+              nodejs(nodeJSInstallationName: 'Node 10.5.0') {
+                  sh 'npm run test'
+              }
+            }
+        }
+        stage('deploy') {
+            when {
+              branch 'master'
+            }
+            steps {
+                nodejs(nodeJSInstallationName: 'Node 10.5.0') {
+                    sh 'npm --version'
+                    sh 'npm prune --production'
+                    sh 'cf login -a api.mcf-np.threega.com -o customer -s agents-of-shield -u agents-of-shield-ci -p $CF_PASSWORD'
+                    sh 'cf zero-downtime-push user-administration-service -f ./manifest.yml -p .'
+                }
+            }
+        }
+        stage('push to S3') {
+            when {
+              branch 'master'
+            }
+            steps {
+                sh 'npm pack'
+                sh 'mv `ls *.tgz` c7-user-adminstration-service-$GIT_COMMIT.tar.gz'
+                sh 'aws s3 cp --sse AES256 c7-user-adminstration-service-$GIT_COMMIT.tar.gz s3://acs2-c7-us-east-1-285453578300/deployables/user-admin-service/c7-user-adminstration-service-$GIT_COMMIT.tar.gz'
+            }
+        }
+        stage('Create Deployment Document') {
+            when {
+              branch 'master'
+            }
+            steps {
+                sh 'npm install @monsantoit/deploytool-cli'
+                sh 'NODE_ENV=production node_modules/.bin/deploytool add -d "GCX-4206-Default-Source-System" -t "AGENTS-OF-SHIELD" -c "c7-useradmin-cf-aws" -v "$GIT_COMMIT" --clientId $PROD_PING_CLIENT_CREDS_USR --clientSecret $PROD_PING_CLIENT_CREDS_PSW --purpose "new features" --features "" --platform "Customer"'
+                sh 'NODE_ENV=production node_modules/.bin/deploytool add -d "GCX-4206-Default-Source-System" -t "AGENTS-OF-SHIELD" -c "c7-useradmin-cf-aws" -v "$GIT_COMMIT" --clientId $PROD_PING_CLIENT_CREDS_USR --clientSecret $PROD_PING_CLIENT_CREDS_PSW --purpose "new features" --features "$(git log --pretty=format:"* %s" --grep="GCX" --no-merges $(git describe --tags --abbrev=0)..HEAD)" --platform "Customer"'
+            }
+        }
+    }
+    post {
+        success {
+          slackSend (color: '#37B787', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Success (<${env.BUILD_URL}|Open>)")
+        }
+
+        failure {
+          slackSend (color: '#A1070D', message: "@channel ${env.JOB_NAME} - #${env.BUILD_NUMBER} Failure (<${env.BUILD_URL}|Open>)")
+        }
+    }
+}

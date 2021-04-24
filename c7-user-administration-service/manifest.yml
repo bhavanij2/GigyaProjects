@@ -1,0 +1,23 @@
+---
+applications:
+- name: user-administration-service
+  command: node dist/server.js
+  buildpack: nodejs_buildpack
+  disk_quota: 1024M
+  memory: 512M
+  instances: 3
+  services:
+  - syslog
+  - audit-log-sqs
+  - hybris-location-hierarchy-api
+  - acs2-ping-client
+  - ping
+  - akana
+  - neo4j-credentials
+  - neo4j-host
+  - user-admin-service-approle
+  - vault-server
+  - acs2-aws
+  - gigya-dealer
+  - cu360-user-sync-sqs
+  - papi

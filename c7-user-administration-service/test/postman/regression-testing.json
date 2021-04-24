@@ -1,0 +1,2440 @@
+{
+	"info": {
+		"_postman_id": "fc7e75c6-deaf-4e17-a414-5044d0cf972b",
+		"name": "c7-user-administration-integration-tests",
+		"description": "Integration tests to verify the user administration service. ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"description": null,
+			"item": [
+				{
+					"name": "Add User Roles",
+					"description": null,
+					"item": [
+						{
+							"name": "001 - Get User Roles - No Roles are assigned",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "325e12e8-ed77-4ca4-a60d-8a6130d01e05",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response count of found records matches baseline.\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData.length).to.eql(0);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer Tn4V1xc7vi7yPV2X8knlmbmcOhg7"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/6ed889777b2149e49f3c7ba46f5tes32/roles",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"6ed889777b2149e49f3c7ba46f5tes32",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "002 - Delete User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/6ed889777b2149e49f3c7ba46f5tes32",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"6ed889777b2149e49f3c7ba46f5tes32"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "003 - Add User with 1 Location Role",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e750e2d4-64ab-4983-96a4-a4490e4b0f7a",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 201\",  () => {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 26icriBR9Czvxj6IleXjWWhOVYyX"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"federationId\": \"6ed889777b2149e49f3c7ba46f5tes32\",\n  \"userId\": \"ram203\",\n  \"userName\": \"ram203\",\n  \"brand\": \"channel\",\n  \"persona\": \"grower\",\n  \"sapAccountId\": \"0002002511\",\n  \"roleIdList\": [\n    \"glb:seed:uadmin\"\n  ],\n  \"contactGlopid\": \"e5696e4c-5ce9-4207-9d8e-38b947ec12da\",\n  \"firstName\": \"Blake\",\n  \"lastName\": \"Patton\",\n  \"addressLine1\": \"800 N Lindberg\",\n  \"addressLine2\": \"string\",\n  \"city\": \"St louis\",\n  \"state\": \"MO\",\n  \"zip\": \"63303\",\n  \"mobilePhone\": \"314-694-1000\",\n  \"homePhone\": \"314-694-1000\"\n}\n"
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "004 - Get User Roles - Added Successfully",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response count of found records matches baseline.\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData.length).to.eql(1);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer Tn4V1xc7vi7yPV2X8knlmbmcOhg7"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/6ed889777b2149e49f3c7ba46f5tes32/roles",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"6ed889777b2149e49f3c7ba46f5tes32",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "005 - Delete User Role",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer haajTpCcdoWKpFL4yd2Shp6yhNzj"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"lobList\": [\n    \"seed\"\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/6ed889777b2149e49f3c7ba46f5tes32/roles/Admin/locations/0002002511",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"6ed889777b2149e49f3c7ba46f5tes32",
+										"roles",
+										"Admin",
+										"locations",
+										"0002002511"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "006 - Get User Roles - Deleted Successfully",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response count of found records matches baseline.\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData.length).to.eql(0);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer Tn4V1xc7vi7yPV2X8knlmbmcOhg7"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/6ed889777b2149e49f3c7ba46f5tes32/roles",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"6ed889777b2149e49f3c7ba46f5tes32",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Update User Roles",
+					"description": null,
+					"item": [
+						{
+							"name": "001 - Get User Roles - No Roles are assigned",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response count of found records matches baseline.\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData.length).to.eql(0);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer Tn4V1xc7vi7yPV2X8knlmbmcOhg7"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/6ed889777b2149e49f3c7ba46f5tes32/roles",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"6ed889777b2149e49f3c7ba46f5tes32",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "002 - Update users role",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 201\",  () => {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer JgE66qH2VJCA3cdPtZrr9H8M4tse"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"lobList\": [\n    \"seed\"\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/6ed889777b2149e49f3c7ba46f5tes32/roles/Channel Seedsman/locations/0003552839",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"6ed889777b2149e49f3c7ba46f5tes32",
+										"roles",
+										"Channel Seedsman",
+										"locations",
+										"0003552839"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "003 - Get User Roles - Updated Successfully",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response count of found records matches baseline.\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData.length).to.eql(1);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer Tn4V1xc7vi7yPV2X8knlmbmcOhg7"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/6ed889777b2149e49f3c7ba46f5tes32/roles",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"6ed889777b2149e49f3c7ba46f5tes32",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "004 - Delete User Role",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer haajTpCcdoWKpFL4yd2Shp6yhNzj"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"lobList\": [\n    \"seed\"\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/6ed889777b2149e49f3c7ba46f5tes32/roles/Channel Seedsman/locations/0003552839",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"6ed889777b2149e49f3c7ba46f5tes32",
+										"roles",
+										"Channel Seedsman",
+										"locations",
+										"0003552839"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "005 - Get User Roles - Deleted Successfully",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response count of found records matches baseline.\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData.length).to.eql(0);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer Tn4V1xc7vi7yPV2X8knlmbmcOhg7"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/6ed889777b2149e49f3c7ba46f5tes32/roles",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"6ed889777b2149e49f3c7ba46f5tes32",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Search Users",
+					"description": null,
+					"item": [
+						{
+							"name": "001 - Fetch All Users With Last Name Tester and First Name Karl",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8f3b89b3-be28-4a8b-a505-62bf37cb4720",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response data includes only matching users.\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    jsonData.forEach(record => {",
+											"        pm.expect(record.last_name).to.include('Tester');",
+											"        pm.expect(record.first_name).to.include('Karl')",
+											"    })",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "content-type",
+										"value": "application/json"
+									},
+									{
+										"key": "user-profile",
+										"value": " { 'firstName': 'Daniel' }",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users?last_name=Tester&first_name=Karl",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "last_name",
+											"value": "Tester"
+										},
+										{
+											"key": "first_name",
+											"value": "Karl"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "002 - Fetch Inactive Users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "29b88af0-1d66-4bfc-91f2-f28e117bcf9c",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response data includes only inactive users.\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    jsonData.forEach(record => {",
+											"        pm.expect(record.status).to.eql('inactive');",
+											"    })",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users?status=inactive",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "inactive"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "003 - Fetch Users by HqSapId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e03f5f58-4665-43b6-b570-4bba75795015",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response data includes only users matching hqSapId\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    jsonData.forEach(record => {",
+											"        pm.expect(record.hqSapId).to.eql('0001013083');",
+											"    })",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users?hqSapId=0001013083",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "hqSapId",
+											"value": "0001013083"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "004 - Fetch Pending Users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "79f86b68-0807-4f7f-9b65-0336d9d88716",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response data includes only pending users.\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    jsonData.forEach(record => {",
+											"        pm.expect(record.status).to.eql('pending');",
+											"        pm.expect(record.first_name.toUpperCase()).to.include('JEFF');",
+											"    })",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users?status=pending&first_name=Jeff",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "lastname",
+											"value": "Tester",
+											"disabled": true
+										},
+										{
+											"key": "firstname",
+											"value": "Karl",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "pending"
+										},
+										{
+											"key": "first_name",
+											"value": "Jeff"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "New User",
+					"description": null,
+					"item": [
+						{
+							"name": "001 - New User (One Location)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e9e1532c-2def-4b33-bf8d-d30d9617e4fb",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer st2.LuGD73q3j_iWXBW71qA-9n6qVNc.MASr7UvoMJQDrdtbiO-C2A.KsLDvtNG6MWD_dOD17ec7eu15Jc"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"jcarter2@cniag.com.test\",\n    \"userName\": \"jcarter2@cniag.com.test\",\n    \"sapAccountId\": \"0001696557\",\n    \"brand\": \"national\",\n    \"persona\": \"dealer\",\n    \"roleIdList\": [\"glb:seed:su\", \"glb:cp:su\",\"glb:acceleron:su\", \"glb:bioag:su\"],\n    \"contactGlopid\": \"3c575dce-fdaa-44d3-ab64-e24a53bf0b4c\",\n    \"firstName\": \"Jamie\",\n    \"lastName\": \"Carter\",\n    \"addressLine1\": \"801 N Drive\",\n    \"addressLine2\": \"\",\n    \"city\": \"st louis\",\n    \"state\": \"MO\",\n    \"zip\": \"63303\",\n    \"mobilePhone\": \"314-790-1200\",\n    \"homePhone\": \"314-790-1200\",\n    \"federationId\": \"e9f341da23514d679a04e722eb17b596\"\n}"
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "002 - Delete User (One Location)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/e9f341da23514d679a04e722eb17b596",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"e9f341da23514d679a04e722eb17b596"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "003 - New User (Multiple Locations)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"jcarter2@cniag.com.test\",\n    \"userName\": \"jcarter2@cniag.com.test\",\n    \"brand\": \"national\",\n    \"persona\": \"dealer\",\n    \"locationRoles\": [\n    \t{\"roleId\": \"glb:seed:su\", \"sapId\": \"0001696557\"},\n    \t{\"roleId\": \"glb:cp:su\", \"sapId\": \"0001696557\"},\n    \t{\"roleId\": \"glb:acceleron:su\", \"sapId\": \"0003569007\"},\n    \t{\"roleId\": \"glb:bioag:su\", \"sapId\": \"0003569007\"}\n    ],\n    \"contactGlopid\": \"3c575dce-fdaa-44d3-ab64-e24a53bf0b4c\",\n    \"firstName\": \"Jamie\",\n    \"lastName\": \"Carter\",\n    \"addressLine1\": \"801 N Drive\",\n    \"addressLine2\": \"\",\n    \"city\": \"st louis\",\n    \"state\": \"MO\",\n    \"zip\": \"63303\",\n    \"mobilePhone\": \"314-790-1200\",\n    \"homePhone\": \"314-790-1200\",\n    \"federationId\": \"e9f341da23514d679a04e722eb17b596\",\n    \"testUser\": \"yes\"\n}"
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users?multiLocation=true",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "multiLocation",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "004 - Delete User (Multiple Locations)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/users/e9f341da23514d679a04e722eb17b596",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"e9f341da23514d679a04e722eb17b596"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "001 - Get User Entitlements",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "034d98bf-3db3-41ce-b71b-8af923dd084c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Should include payer entitlements for payer location\", () => {",
+									"   const jsonData = pm.response.json();",
+									"   const payerLocationEntitlements = jsonData[\"0003444447\"];",
+									"   const hasPayerPermission = payerLocationEntitlements.includes(\"seed:finance:statements:read\");",
+									"   pm.expect(hasPayerPermission).to.eql(true);",
+									"});",
+									"",
+									"pm.test(\"Should not include payer entitlements for non-payer location\", () => {",
+									"   const jsonData = pm.response.json();",
+									"   const payerLocationEntitlements = jsonData[\"0001775323\"];",
+									"   const hasPayerPermission = payerLocationEntitlements.includes(\"seed:finance:statements:read\");",
+									"   pm.expect(hasPayerPermission).to.eql(false);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer st2.WTNcELYqOBGsAy3KFPlzartr0v8.64QxBktnKf0ILhS5Y0kOZQ.Z5Ixl-ZmChBFmBzfpcTvhpUrz3Q"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/users/jamar.t.vales@monsanto.com/brands/national/personas/dealer/entitlements",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"jamar.t.vales@monsanto.com",
+								"brands",
+								"national",
+								"personas",
+								"dealer",
+								"entitlements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003 - Get Entitlements by Federation Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d62c877a-3bac-40d5-828a-c575451e2873",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Should include payer entitlements for payer location\", () => {",
+									"   const jsonData = pm.response.json();",
+									"   const payerLocationEntitlements = jsonData[\"0003444447\"];",
+									"   const hasPayerPermission = payerLocationEntitlements.includes(\"seed:finance:statements:read\");",
+									"   pm.expect(hasPayerPermission).to.eql(true);",
+									"});",
+									"",
+									"pm.test(\"Should not include payer entitlements for non-payer location\", () => {",
+									"   const jsonData = pm.response.json();",
+									"   const payerLocationEntitlements = jsonData[\"0001775323\"];",
+									"   const hasPayerPermission = payerLocationEntitlements.includes(\"seed:finance:statements:read\");",
+									"   pm.expect(hasPayerPermission).to.eql(false);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer kvLtNwycTmxYYffAo5JBWc2Lti0B"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/users/7be5a5c06e0e4c1cb8730e97ab1f05bb/entitlements",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"7be5a5c06e0e4c1cb8730e97ab1f05bb",
+								"entitlements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - Get User Accounts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer st2.yT1onPcZNn8whfrAg0QRMrRZTSg.Q9zmNZdRVcSXIXZqttGIFw.k7UvDnSKQSgaTvGg3CiCFIYyakk"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/users/tim.nilles@example.com/brands/national/personas/dealer/accounts",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"tim.nilles@example.com",
+								"brands",
+								"national",
+								"personas",
+								"dealer",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Get User Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/users/0b575bd6782f4821b7f4028606b38a5a/info",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"0b575bd6782f4821b7f4028606b38a5a",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "007 - Get Flattened Locations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/users/0b575bd6782f4821b7f4028606b38a5a/flatten-locations",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"0b575bd6782f4821b7f4028606b38a5a",
+								"flatten-locations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"description": null,
+			"item": [
+				{
+					"name": "001 - Get All Roles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 83ycA8RkqL5Xapi94gFOYmYYWThN"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002 - Add Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"glb:seed:test-role\",\n  \"name\": \"IT test role\",\n  \"lob\": \"seed\",\n  \"brand\": \"channel\",\n  \"persona\": \"dealer\",\n  \"country\": \"US\",\n  \"scope\": \"global\",\n  \"description\": \"test description\",\n  \"longDescription\": \"integration test role - test long description\",\n  \"beta\": true\n,\n  \"internal\": true\n}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003 - Update Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of Role properties updated\", () => {",
+									"const numberOfPropertiesUpdated = pm.response.json().result.updateRoleResults._stats.propertiesSet",
+									"pm.expect(numberOfPropertiesUpdated).to.eql(1)",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"longDescription\": \"test long description\"\n}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles/glb:seed:test-role",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"glb:seed:test-role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - Add Permission to test Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer wRkinoFyJ9skmD3AMC5a47cI11IO"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"permissions\": [\n\t\t{        \n\t\t\t\"id\": \"seed:base:farmers\",\n        \t\"type\": \"read\"\n\t\t\t\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles/IT test role/permissions",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"IT test role",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005 - Another new Role to test duplicated assignments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"glb:seed:new-test-role\",\n  \"name\": \"New IT test role\",\n  \"lob\": \"seed\",\n  \"brand\": \"channel\",\n  \"persona\": \"dealer\",\n  \"country\": \"US\",\n  \"scope\": \"global\",\n  \"description\": \"test description\",\n  \"longDescription\": \"integration test role - test long description\",\n  \"beta\": true\n,\n  \"internal\": true\n}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Update Role - change role id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of relationships\", () => {",
+									"const numberOfRelationshipsUpdated = pm.response.json().result.duplicateRoleResults.rolePermissionResults._stats.relationshipsCreated",
+									"pm.expect(numberOfRelationshipsUpdated).to.eql(1)",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"newRoleId\": \"glb:seed:new-test-role\"\n}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles/glb:seed:test-role",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"glb:seed:test-role"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Groups",
+			"description": null,
+			"item": [
+				{
+					"name": "001 - Get Permissions From Groups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "467f9ea1-8f72-4129-a861-957e40419921",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-profile",
+								"value": "{\"id\": \"jomitc\"}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/groups/permissions",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"groups",
+								"permissions"
+							]
+						},
+						"description": "returns permissions for velocity user groups"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Locations",
+			"description": null,
+			"item": [
+				{
+					"name": "FeatureSets",
+					"description": null,
+					"item": [
+						{
+							"name": "001 - Attach FeatureSet To Location",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b64fad91-779f-4bd9-a453-4283885a678b",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 201\",  () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"brand\": \"national\",\n\t\"persona\": \"dealer\",\n\t\"lob\": \"seed\"\n}"
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/locations/0001027312/feature-sets/test",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"locations",
+										"0001027312",
+										"feature-sets",
+										"test"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "002 - Detach Feature Set",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bc12322c-c2da-4ea1-be77-ab385bf58613",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\",  () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{UserAdminAPIUrl}}/v1/locations/0001027312/feature-sets/test/brands/national/personas/dealer/lobs/seed",
+									"host": [
+										"{{UserAdminAPIUrl}}"
+									],
+									"path": [
+										"v1",
+										"locations",
+										"0001027312",
+										"feature-sets",
+										"test",
+										"brands",
+										"national",
+										"personas",
+										"dealer",
+										"lobs",
+										"seed"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "001 - Get flattened locations by hqSapId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response count of found records matches baseline.\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(2);",
+									"    pm.expect(jsonData[0].lob.length + jsonData[1].lob.length).to.eql(5);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/locations/0001023283/flattened-locations",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"locations",
+								"0001023283",
+								"flattened-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002 - Get Flattened Locations by hqSapId (Grower)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9b5ac9d5-bdd2-44ce-ae8a-243f387a977e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response count of records is one.\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(1);",
+									"});",
+									"",
+									"pm.test(\"Response is reflexive of input\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    const { id, name, level, lob  } = jsonData[0];",
+									"    pm.expect(id).to.eql('0001023283');",
+									"    pm.expect(name).to.eql('KENNETH G KUTTNER');",
+									"    pm.expect(level).to.eql('HQ');",
+									"    pm.expect(lob.length).to.eql(1);",
+									"    pm.expect(lob[0]).to.eql('seed');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/locations/0001023283/flattened-locations?persona=grower",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"locations",
+								"0001023283",
+								"flattened-locations"
+							],
+							"query": [
+								{
+									"key": "persona",
+									"value": "grower"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003 - Update Location Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/locations/0001702613",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"locations",
+								"0001702613"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - Add Location to Neo4j",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"sapLocationId\":\"0003732650\"}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/locations",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permissions",
+			"description": null,
+			"item": [
+				{
+					"name": "001 - Get Role Permissions - Before Adding Permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response count of found records matches baseline.\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(35);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer wRkinoFyJ9skmD3AMC5a47cI11IO"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles/Sales/permissions",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"Sales",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002 - Add Role Permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer wRkinoFyJ9skmD3AMC5a47cI11IO"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"permissions\": [\n\t\t{        \n\t\t\t\"id\": \"cp:base:farmers\",\n        \t\"type\": \"read\"\n\t\t\t\n\t\t},\n\t\t{        \n\t\t\t\"id\": \"acceleron:base:farmers\",\n        \t\"type\": \"read\"\n\t\t\t\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles/Sales/permissions",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"Sales",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003 - Get All Permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// to be a bit more flexible for permission changes",
+									"pm.test(\"There are more than 200 permissions.\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length > 200).to.eql(true);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer wRkinoFyJ9skmD3AMC5a47cI11IO"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/permissions",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - Get Role Permissions - After Adding Permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response count of found records matches baseline.\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(37);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer wRkinoFyJ9skmD3AMC5a47cI11IO"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles/Sales/permissions",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"Sales",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005 - Delete Role Permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer wRkinoFyJ9skmD3AMC5a47cI11IO"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"permissions\": [\n\t\t{        \n\t\t\t\"id\": \"cp:base:farmers\",\n        \t\"type\": \"read\"\n\t\t\t\n\t\t},\n\t\t{        \n\t\t\t\"id\": \"acceleron:base:farmers\",\n        \t\"type\": \"read\"\n\t\t\t\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles/Sales/permissions",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"Sales",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - Get All Permissions  2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// to be a bit more flexible for permission changes",
+									"pm.test(\"There are more than 200 permissions.\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length > 200).to.eql(true);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer wRkinoFyJ9skmD3AMC5a47cI11IO"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/permissions",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "007 - Get Role Permissions - After Deleting Permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response count of found records matches baseline.\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(35);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer wRkinoFyJ9skmD3AMC5a47cI11IO"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles/Sales/permissions",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"Sales",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "008 - Create New Permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "67ceae66-9817-4adc-857c-81a8a32a68fe",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"One node created\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.counters._stats.nodesCreated).to.equal(1);",
+									"})",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer wRkinoFyJ9skmD3AMC5a47cI11IO"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"seed:test:test-p\",\n\t\"lob\": \"lic\",\n\t\"action\": \"test\",\n\t\"application\": \"test\",\n\t\"type\": \"widget\",\n\t\"payer\": false,\n\t\"description\": \"Test Description\"\n}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/permissions",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "009 - Delete Permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "503036fe-4e32-420c-a7d3-91615464b28e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"One node deleted\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.counters._stats.nodesDeleted).to.equal(1);",
+									"})",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer wRkinoFyJ9skmD3AMC5a47cI11IO"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/permissions/seed:test:test-p",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"permissions",
+								"seed:test:test-p"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles - Move to end to avoid race condition",
+			"description": null,
+			"item": [
+				{
+					"name": "001 - Delete role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles/glb:seed:test-role",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"glb:seed:test-role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002 - Delete role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/roles/glb:seed:new-test-role",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"glb:seed:new-test-role"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FeatureSets",
+			"description": null,
+			"item": [
+				{
+					"name": "001 - Get FeatureSets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4a99d7d-7e0e-4794-86be-0773744cf79d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "user-profile",
+								"value": " { 'firstName': 'Daniel' }",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"payer\"\n}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/feature-sets",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"feature-sets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002 - Create FeatureSet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "812c84f9-18ef-472b-92b5-2a37d21ad7c1",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 201\",  () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"test\"\n}"
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/feature-sets",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"feature-sets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003 - Delete FeatureSet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47c64cf6-cb68-4859-8261-fc62770af544",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\",  () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UserAdminAPIUrl}}/v1/feature-sets/test",
+							"host": [
+								"{{UserAdminAPIUrl}}"
+							],
+							"path": [
+								"v1",
+								"feature-sets",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

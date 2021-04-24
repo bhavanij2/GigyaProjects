@@ -1,0 +1,24 @@
+{
+    "accounts": [
+        {
+            "city": "st louis",
+            "locationName": "monsanto co",
+            "sapid": "1000202",
+            "state": "missouri",
+            "streetAddress": "monsanto lane",
+            "userId": "john1",
+            "userName": "John"
+        },
+        {
+            "city": "chesterfield",
+            "locationName": "monsanto co sub",
+            "sapid": "1000203",
+            "state": "missouri",
+            "streetAddress": "monsanto other lane",
+            "userId": "john1",
+            "userName": "John"
+        }
+    ],
+    "name": "John",
+    "uid": ""
+}

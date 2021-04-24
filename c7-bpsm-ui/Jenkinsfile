@@ -1,0 +1,132 @@
+pipeline {
+    agent any
+    environment {
+      NPM_E_AUTH_TOKEN = credentials('npm-e-auth-token')
+      NODE_ENV = 'development'
+      CBT_USER = credentials('cbt-user')
+      CBT_TOKEN = credentials('cbt-token')
+      APPLITOOLS_TOKEN = credentials('applitools-token')
+      PORTAL_PASSWORD = credentials('portal-password')
+      CF_PASSWORD = credentials('agents-of-shield-ci-password')
+      PROD_PING_CLIENT_CREDS = credentials('prod-ping-client')
+      PATH = "/usr/share/node/bin:$PATH"
+      CURRENT_DATE = sh(returnStdout: true, script: "date +'%m-%d-%y'")
+    }
+    stages {
+      stage('Create Deployment Document') {
+          when {
+            branch 'master'
+          }
+          steps {
+            nodejs(nodeJSInstallationName: 'Node 10.5.0') {
+              sh 'npm install @monsantoit/deploytool-cli'
+              sh 'NODE_ENV=production node_modules/.bin/deploytool add -d "Zero_Gravity BPS UI $CURRENT_DATE" -t "AGENTS-OF-SHIELD" -c "c7-bpsm-ui-cf-aws" -v "$GIT_COMMIT" --clientId $PROD_PING_CLIENT_CREDS_USR --clientSecret $PROD_PING_CLIENT_CREDS_PSW --purpose "new features" --features "" --platform "Customer"'
+              sh 'NODE_ENV=production node_modules/.bin/deploytool add -d "Zero_Gravity BPS UI $CURRENT_DATE" -t "AGENTS-OF-SHIELD" -c "c7-bpsm-ui-cf-aws" -v "$GIT_COMMIT" --clientId $PROD_PING_CLIENT_CREDS_USR --clientSecret $PROD_PING_CLIENT_CREDS_PSW --purpose "new features" --features "$(git log --pretty=format:"* %s" --grep="GCX" --no-merges $(git describe --tags --abbrev=0)..HEAD)" --platform "Customer"'
+              sh 'npm uninstall @monsantoit/deploytool-cli'
+            }
+          }
+        }
+        stage('build') {
+            steps {
+              nodejs(nodeJSInstallationName: 'Node 10.5.0') {
+                  sh 'npm config set registry https://registry.npmjs.org'
+                  sh 'npm config set @monsantoit:registry https://npm.platforms.engineering'
+                  sh 'npm config set @gdx:registry https://npm.platforms.engineering'
+                  sh 'npm config set //npm.platforms.engineering/:_authToken $NPM_E_AUTH_TOKEN'
+                  sh 'npm config list'
+                  sh 'npm install'
+                  sh 'npm run build'
+                  sh 'rm -rf .git'
+                  sh 'rm -rf node_modules/.cache'
+              }
+            }
+        }
+        stage('test'){
+            steps {
+              nodejs(nodeJSInstallationName: 'Node 10.5.0') {
+                  sh 'npm run unit:nocache'
+              }
+            }
+        }
+        stage('prune') {
+          steps {
+            nodejs(nodeJSInstallationName: 'Node 10.5.0') {
+              sh 'npm prune --production'
+            }
+          }
+        }
+        stage('deploy') {
+            when {
+              branch 'master'
+            }
+            steps {
+              sh 'cf login -a api.mcf-np.threega.com -o customer -s agents-of-shield -u agents-of-shield-ci -p $CF_PASSWORD'
+              sh 'cf push c7-bpsm-ui -f ./manifest.yml -p .'
+            }
+        }
+        stage('push to S3') {
+            when {
+              branch 'master'
+            }
+            steps {
+                sh 'npm pack'
+                sh 'mv `ls *.tgz` c7-bpsm-ui-$GIT_COMMIT.tar.gz'
+                sh 'aws s3 cp --sse AES256 c7-bpsm-ui-$GIT_COMMIT.tar.gz s3://acs2-c7-us-east-1-285453578300/deployables/bpsm-ui-app/c7-bpsm-ui-$GIT_COMMIT.tar.gz'
+            }
+        }
+        stage('reinstall') {
+            when {
+                branch 'master'
+            }
+            steps {
+              nodejs(nodeJSInstallationName: 'Node 10.5.0') {
+                  sh 'npm install'
+              }
+            }
+        }
+        stage('applitools') {
+            when {
+                branch 'master'
+            }
+            parallel {
+                stage('medium') {
+                    steps {
+                        nodejs(nodeJSInstallationName: 'Node 8.9.1') {
+                            Applitools('https://bayereyes.applitools.com') {
+                                sh 'npm run test:visual:medium'
+                            }
+                        }
+                    }
+                }
+                stage('large') {
+                    steps {
+                        nodejs(nodeJSInstallationName: 'Node 8.9.1') {
+                            Applitools('https://bayereyes.applitools.com') {
+                                sh 'npm run test:visual:large'
+                            }
+                        }
+                    }
+                }
+                stage('xlarge') {
+                    steps {
+                        nodejs(nodeJSInstallationName: 'Node 8.9.1') {
+                            Applitools('https://bayereyes.applitools.com') {
+                                sh 'npm run test:visual:xlarge'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    post {
+        success {
+          slackSend (color: '#37B787', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Success (<${env.BUILD_URL}|Open>)")
+        }
+
+        failure {
+          slackSend (color: '#A1070D', message: "@channel ${env.JOB_NAME} - #${env.BUILD_NUMBER} Failure (<${env.BUILD_URL}|Open>)")
+        }
+    }
+}
+

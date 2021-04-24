@@ -1,0 +1,22 @@
+# on a push to development, deploy to NP
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+  pre_build:
+    commands:
+      - npm config set //npm.platforms.engineering/:_authToken $npm_access_token
+      - npm config set @monsantoit:registry https://npm.platforms.engineering
+      - npm config set @supernova:registry https://npm.platforms.engineering
+      - echo Install Spectrum CLI
+      - npm install @monsantoit/spectrum-cli@2.1.0-beta.7 -g
+  build:
+    commands:
+      - echo Deploy to nonprod using Spectrum one
+      - echo $VAULT_ROLE_ID
+      - spectrum fargate deploy —-ci --account "Prod" --vault-role-id $VAULT_ROLE_ID --vault-secret-id $VAULT_ROLE_SECRET
+      - echo Deployment completed to prod using Spectrum
+
+

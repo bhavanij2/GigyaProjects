@@ -1,0 +1,15 @@
+
+match(l:Location)-[hfs:HAS_FEATURE_SET]->(fs:FeatureSet) return l.sapid, hfs.brand, hfs.persona, hfs.country, hfs.lob set
+
+
+match(l:Location)-[hfs:HAS_FEATURE_SET {brand:'channel', persona:'grower'}]->(fs:FeatureSet) set hfs.country = 'US', hfs.portal = 'channelgrower' return l.sapid, hfs.brand, hfs.persona, hfs.country, hfs.lob, hfs.portal
+match(l:Location)-[hfs:HAS_FEATURE_SET {brand:'national', persona:'grower'}]->(fs:FeatureSet) set hfs.country = 'US', hfs.portal = 'dekalbasgrowdeltapine' return l.sapid, hfs.brand, hfs.persona, hfs.country, hfs.lob, hfs.portal
+match(l:Location)-[hfs:HAS_FEATURE_SET {brand:'national', persona:'dealer'}]->(fs:FeatureSet) set hfs.country = 'US', hfs.portal = 'mycrop' return l.sapid, hfs.brand, hfs.persona, hfs.country, hfs.lob, hfs.portal
+match(l:Location)-[hfs:HAS_FEATURE_SET {brand:'channel', persona:'dealer'}]->(fs:FeatureSet) set hfs.country = 'US', hfs.portal = 'seedsmansource' return l.sapid, hfs.brand, hfs.persona, hfs.country, hfs.lob, hfs.portal
+
+MATCH (r:Role {id: r.id})-[hp:HAS_PERMISSION]->(p:Permission {id: p.id, payer: true})
+SET hp.featureset = 'payer'
+
+
+- Test adding a location that belongs to 2 portals
+- Test adding a rea location.

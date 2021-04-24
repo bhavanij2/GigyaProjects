@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>cflog.cloudops.local:5005</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" >
+            <customFields>{"app":"c7-user-registration-service"}</customFields>
+            <fieldNames>
+                <level>log_level</level>
+            </fieldNames>
+        </encoder>
+    </appender>
+    <springProfile name="nonprod, prod">
+        <logger name="com.monsanto.acs2.user-registration-service" level="WARN" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="STASH"/>
+        </logger>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="STASH"/>
+        </root>
+    </springProfile>
+    <springProfile name="local">
+        <logger name="com.monsanto.acs2.user-registration-service" level="WARN" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </springProfile>
+</configuration>

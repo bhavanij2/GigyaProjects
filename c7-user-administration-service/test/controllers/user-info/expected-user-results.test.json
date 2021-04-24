@@ -1,0 +1,96 @@
+{
+  "profile": {
+      "lastLogin": "Mon, 06 May 2019 16:40:32 GMT",
+      "zip": "63303",
+      "home_phone": "314-694-1000",
+      "zipCode": "63111",
+      "persona": "dealer",
+      "city": "Saint Louis",
+      "glopid": "123457abcdefh",
+      "last_name": "Tester",
+      "hqSapId": "0001013083",
+      "primary_phone": "3145551212",
+      "secondary_phone": "",
+      "mobile_phone": "314-694-1000",
+      "contact_glopid": "a58a9c92-63e8-4000-8b03-39963b88f846",
+      "name": "Shanel.Witting@hotmail.com",
+      "address_line_1": "123 Bayer Parkway",
+      "address_line_2": "",
+      "state": "MO",
+      "id": "tim.nilles@example.com",
+      "federationId": "cf7f48a15fb74c97a2a10318ce5b30fa",
+      "federationid": "cf7f48a15fb74c97a2a10318ce5b30fa",
+      "first_name": "Carroll",
+      "brand": "national"
+  },
+  "locations": {
+      "0001026708": {
+          "zipCode": "465509603",
+          "streetAddress": "68220 BEECH RD",
+          "city": "NAPPANEE",
+          "name": "PHIL LEHMAN",
+          "state": "IN",
+          "sapid": "0001026708",
+          "hqSapId": "0001026708",
+          "roles": {
+              "glb:seed:ba": {
+                  "name": "Branch Account",
+                  "id": "glb:seed:ba",
+                  "lob": "seed",
+                  "scope": "global"
+              }
+          }
+      },
+      "0001002606": {
+          "zipCode": "617012057",
+          "streetAddress": "1701 N TOWANDA AVE",
+          "city": "BLOOMINGTON",
+          "name": "GROWMARK INC HQ BLOOMINGTON",
+          "state": "IL",
+          "hqSapId": "0001002606",
+          "sapid": "0001002606",
+          "roles": {
+              "glb:*:nbdealer": {
+                  "name": "National Dealer Test Role",
+                  "id": "glb:*:nbdealer",
+                  "lob": "*",
+                  "scope": "global"
+              }
+          }
+      },
+      "0001022461": {
+          "zipCode": "516304015",
+          "streetAddress": "1978 310TH ST",
+          "city": "BLANCHARD",
+          "name": "CARLSON SEED INC",
+          "state": "IA",
+          "sapid": "0001022461",
+          "hqSapId": "0001022461",
+          "roles": {
+              "glb:*:nbdealer": {
+                  "name": "National Dealer Test Role",
+                  "id": "glb:*:nbdealer",
+                  "lob": "*",
+                  "scope": "global"
+              }
+          }
+      },
+      "0003551314": {
+          "zipCode": "56225",
+          "streetAddress": "31999 US HWY 75",
+          "city": "CLINTON",
+          "name": "CHS BORDER STATES CLINTON HQ",
+          "state": "MN",
+          "hqSapId": "0001702613",
+          "sapid": "0003551314",
+          "roles": {
+              "glb:seed:ba": {
+                  "name": "Branch Account",
+                  "id": "glb:seed:ba",
+                  "lob": "seed",
+                  "scope": "global"
+              }
+          }
+      }
+  }
+}

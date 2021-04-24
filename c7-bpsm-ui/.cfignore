@@ -1,0 +1,8 @@
+coverage/
+src/
+test/
+.git/
+.env
+node_modules/
+!node_modules/@monsantoit/phoenix-service-bindings-koa-middleware
+!node_modules/lodash.defaults

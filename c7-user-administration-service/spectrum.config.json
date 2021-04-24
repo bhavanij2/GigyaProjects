@@ -1,0 +1,60 @@
+{
+  "accounts": [
+    {
+      "name": "Non-Prod",
+      "path": "vault:///secret/c7/fargate-non-prod/aws/user-admin-api"
+    },
+    {
+      "name": "Prod",
+      "path": "vault:///secret/c7/fargate-prod/aws/user-admin-api"
+    }
+  ],
+  "ProjectName": "c7-user-administration-service",
+  "FargateRegion": "us-east-1",
+  "HealthCheckPath": "/v1/health",
+  "HealthCheckIntervalSeconds": 60,
+  "InstanceCount": 2,
+  "CpuAllocation": "1024",
+  "MemoryAllocation": "2GB",
+  "TaskExecutionRoleName": "",
+  "faste": {
+    "entry": "",
+    "assets": []
+  },
+  "EnvironmentVariables": {
+    "development": {
+      "DEPLOYED": "true",
+      "client_id": "vault:///secret/c7/non-prod/ping/credentials.client_id",
+      "client_secret": "vault:///secret/c7/non-prod/ping/credentials.client_secret",
+      "aws_access_key_id": "vault:///secret/c7/non-prod/aws/credentials.aws_access_key_id",
+      "aws_secret_access_key": "vault:///secret/c7/non-prod/aws/credentials.aws_secret_access_key",
+      "hybris_location_hierarchy_api": "https://api01-np.agro.services/hybris-stg-api/organization",
+      "akana_url":"https://api01-np.agro.services",
+      "audit_log_sqs_name":"https://sqs.us-east-1.amazonaws.com/285453578300/acs2-c7-entitlement-audit",
+      "cu360_user_sync_sqs_name":"https://sqs.us-east-1.amazonaws.com/285453578300/acs2-c7-cu360-user-registration",
+      "PING_URL": "https://test.amp.monsanto.com/as/token.oauth2",
+      "neo4j_host_url": "bolt+routing://acs2-c7-neo4j-np-i1.526148188585.internal.monsanto.net:7687",
+      "neo4j_username": "vault:///secret/c7/fargate-non-prod/neo4j/credentials.username",
+      "neo4j_password": "vault:///secret/c7/fargate-non-prod/neo4j/credentials.password",
+      "papi": "https://profile.velocity-np.ag/v3"
+    },
+    "production": {
+      "client_id": "vault:///secret/c7/prod/ping/credentials.client_id",
+      "client_secret": "vault:///secret/c7/prod/ping/credentials.client_secret",
+      "aws_access_key_id": "vault:///secret/c7/prod/aws/credentials.aws_access_key_id",
+      "aws_secret_access_key": "vault:///secret/c7/prod/aws/credentials.aws_secret_access_key",
+      "hybris_location_hierarchy_api": "https://api01.agro.services/hybris-prod-api/organization",
+      "akana_url":"https://api01.agro.services",
+      "audit_log_sqs_name":"https://sqs.us-east-1.amazonaws.com/350260138091/acs2-c7-entitlement-audit",
+      "cu360_user_sync_sqs_name":"https://sqs.us-east-1.amazonaws.com/350260138091/acs2-c7-cu360-user-registration",
+      "PING_URL": "https://amp.monsanto.com/as/token.oauth2",
+      "neo4j_host_url": "bolt+routing://acs2-c7-neo4j-prod-i1.662922270569.internal.monsanto.net:7687",
+      "neo4j_username": "vault:///secret/c7/fargate-prod/neo4j/credentials.username",
+      "neo4j_password": "vault:///secret/c7/fargate-prod/neo4j/credentials.password",
+      "gigya_dealer_api_key":"vault:///secret/c7/prod/gigya/national/dealer.apiKey",
+      "gigya_dealer_user_key":"vault:///secret/c7/prod/gigya/user-registration.userKey",
+      "gigya_dealer_secret":"vault:///secret/c7/prod/gigya/user-registration.secret",
+      "papi": "https://profile.velocity.ag/v3"
+    }
+  }
+}

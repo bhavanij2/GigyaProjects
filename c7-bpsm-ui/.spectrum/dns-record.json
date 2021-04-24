@@ -1,0 +1,17 @@
+{
+  "Comment": "DNS Record creation by Spectrum",
+  "Changes": [
+    {
+      "Action": "CREATE",
+      "ResourceRecordSet": {
+        "AliasTarget": {
+          "HostedZoneId": "Z35SXDOTRQ7X7K",
+          "EvaluateTargetHealth": false,
+          "DNSName": "dualstack.internal-SC-37-LoadB-18E2WI6FCVJFO-1600557698.us-east-1.elb.amazonaws.com."
+        },
+        "Type": "A",
+        "Name": "c7-bpsm-ui-Spike-Deploy-To-Fargate.372537810570.internal.monsanto.net."
+      }
+    }
+  ]
+}

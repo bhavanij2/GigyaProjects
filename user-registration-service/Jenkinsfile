@@ -1,0 +1,60 @@
+pipeline {
+  agent any
+  environment {
+      PROD_PING_CLIENT_CREDS = credentials('prod-ping-client')
+  }
+  stages {
+    stage('Setup') {
+      steps {
+        sh 'scripts/jenkins-build-scripts/jenkins-setup.sh'
+      }
+    }
+    stage('Build') {
+      steps {
+        sh 'chmod +x scripts/build.sh'
+        sh 'releaseType=np scripts/build.sh'
+      }
+    }
+    stage('Deploy') {
+      when {
+        branch 'master'
+      }
+      environment {
+        CF_PASSWORD = credentials('agents-of-shield-ci-password')
+      }
+      steps {
+        sh 'cf logout'
+        sh 'cf login -a api.mcf-np.threega.com -s agents-of-shield -u agents-of-shield-ci -p $CF_PASSWORD --skip-ssl-validation'
+        sh 'chmod +x scripts/cf-deploy-np.sh'
+        sh 'scripts/cf-deploy-np.sh'
+      }
+    }
+    stage('Push to S3') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh 'chmod +x scripts/stage-deploy.sh'
+        sh 'scripts/stage-deploy.sh'
+      }
+    }
+    stage('Create Deployment Document') {
+        when {
+          branch 'master'
+        }
+        steps {
+            sh 'npm install @monsantoit/deploytool-cli'
+            sh 'NODE_ENV=production node_modules/.bin/deploytool add -d "pre-register-uadmin $CURRENT_DATE" -t "AGENTS-OF-SHIELD" -c "c7-user-registration-service-cf-aws" -v "$GIT_COMMIT" --clientId $PROD_PING_CLIENT_CREDS_USR --clientSecret $PROD_PING_CLIENT_CREDS_PSW --purpose "new features" --features "" --platform "Customer"'
+            sh 'NODE_ENV=production node_modules/.bin/deploytool add -d "pre-register-uadmin $CURRENT_DATE" -t "AGENTS-OF-SHIELD" -c "c7-user-registration-service-cf-aws" -v "$GIT_COMMIT" --clientId $PROD_PING_CLIENT_CREDS_USR --clientSecret $PROD_PING_CLIENT_CREDS_PSW --purpose "new features" --features "$(git log --pretty=format:"* %s" --grep="GCX" --no-merges $(git describe --tags --abbrev=0)..HEAD)" --platform "Customer"'
+        }
+    }
+  }
+  post {
+    success {
+      slackSend (color: '#37B787', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Success (<${env.BUILD_URL}|Open>)")
+    }
+    failure {
+      slackSend (color: '#A1070D', message: "@channel ${env.JOB_NAME} - #${env.BUILD_NUMBER} Failure (<${env.BUILD_URL}|Open>)")
+    }
+  }
+}

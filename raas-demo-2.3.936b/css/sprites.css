@@ -1,0 +1,210 @@
+.PNG-Logo, .AOL_40, .Digg_40, .Facebook_40, .Google_Plus_40, .Hyves_40, .LinkedIn_40, .Messenger_40, .more_share_40px, .Twitter_40, .Arrow-Left, .Delicious_hover, .Delicious, .Dislike,
+.Dislike_hover, .Yuck_hover, .Innovatice, .Innovatice_hover, .Recommend, .Recommend_hover, .Yuck, .Icon-Clock, .Layer-408, .Vector-Smart-Object, .Twitter_on_follow, .Twitter_hover_follow,
+.Rss_hover_follow, .Rss_on_follow, .Linkedin_hover_follow, .Linkedin_on_follow, .Google_Plus_on_follow, .Google_Plus_hover_follow, .Facebook_hover_follow, .Facebook_on_follow{
+	background: url('./sprites.png') no-repeat;
+}
+
+.PNG-Logo{
+	background-position: 0 -12.999984741210938px ;
+	width: 162px;
+	height: 61px;
+}
+
+.AOL_40{
+	background-position: -2px -99.99998474121094px ;
+	width: 32px;
+	height: 32px;
+}
+
+.Digg_40{
+	background-position: -47px -99.99998474121094px ;
+	width: 32px;
+	height: 32px;
+}
+
+.Facebook_40{
+	background-position: -98px -99.99998474121094px ;
+	width: 32px;
+	height: 32px;
+}
+
+.Google_Plus_40{
+	background-position: -146px -99.99998474121094px ;
+	width: 32px;
+	height: 32px;
+}
+
+.Hyves_40{
+	background-position: -3px -143.99998474121094px ;
+	width: 32px;
+	height: 32px;
+}
+
+.LinkedIn_40{
+	background-position: -44px -144.99998474121094px ;
+	width: 32px;
+	height: 32px;
+}
+
+.Messenger_40{
+	background-position: -100px -143.99998474121094px ;
+	width: 32px;
+	height: 32px;
+}
+
+.more_share_40px{
+	background-position: -144px -143.99998474121094px ;
+	width: 32px;
+	height: 32px;
+}
+
+.Twitter_40{
+	background-position: -3px -185.99998474121094px ;
+	width: 32px;
+	height: 32px;
+}
+
+.Arrow-Left{
+	background-position: -191px -26.999984741210938px ;
+	width: 7px;
+	height: 13px;
+}
+
+.Delicious_hover{
+	background-position: -249px -22.999984741210938px ;
+	width: 18px;
+	height: 20px;
+}
+
+.Delicious{
+	background-position: -220px -20.999984741210938px ;
+	width: 18px;
+	height: 20px;
+}
+
+.Dislike{
+	background-position: -292px -25.999984741210938px ;
+	width: 14px;
+	height: 16px;
+}
+
+.Dislike_hover{
+	background-position: -318px -26.999984741210938px ;
+	width: 14px;
+	height: 16px;
+}
+
+.Yuck_hover{
+	background-position: -372px -22.999984741210938px ;
+	width: 18px;
+	height: 20px;
+}
+
+.Innovatice{
+	background-position: -221px -55.99998474121094px ;
+	width: 15px;
+	height: 20px;
+}
+
+.Innovatice_hover{
+	background-position: -248px -55.99998474121094px ;
+	width: 15px;
+	height: 20px;
+}
+
+.Recommend{
+	background-position: -275px -57px ;
+	width: 13px;
+	height: 15px;
+}
+
+.Recommend_hover{
+	background-position: -300px -54.99998474121094px ;
+	width: 13px;
+	height: 15px;
+}
+
+.Yuck{
+	background-position: -347px -22.999984741210938px ;
+	width: 18px;
+	height: 20px;
+}
+
+.Icon-Clock{
+	background-position: -213px -106px ;
+	width: 25px;
+	height: 24px;
+}
+
+.Layer-408{
+	background-position: -271px -107px ;
+	width: 14px;
+	height: 15px;
+}
+
+.Vector-Smart-Object{
+	background-position: -250px -107px ;
+	width: 14px;
+	height: 22px;
+}
+
+.Twitter_on_follow{
+	background-position: -490px 0;
+	width: 44px;
+	height: 43px;
+}
+
+.Twitter_hover_follow{
+	background-position: -442px -2px ;
+	width: 44px;
+	height: 43px;
+}
+
+.Rss_hover_follow{
+	background-position: -491px -51px ;
+	width: 44px;
+	height: 43px;
+}
+
+.Rss_on_follow{
+	background-position: -443px -52px ;
+	width: 44px;
+	height: 43px;
+}
+
+.Linkedin_hover_follow{
+	background-position: -490px -101px ;
+	width: 44px;
+	height: 43px;
+}
+
+.Linkedin_on_follow{
+	background-position: -443px -102px ;
+	width: 44px;
+	height: 43px;
+}
+
+.Google_Plus_on_follow{
+	background-position: -491px -150px ;
+	width: 44px;
+	height: 44px;
+}
+
+.Google_Plus_hover_follow{
+	background-position: -443px -150px ;
+	width: 44px;
+	height: 44px;
+}
+
+.Facebook_hover_follow{
+	background-position: -492px -200px ;
+	width: 43px;
+	height: 43px;
+}
+
+.Facebook_on_follow{
+	background-position: -444px -201px ;
+	width: 43px;
+	height: 43px;
+}
+

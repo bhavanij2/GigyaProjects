@@ -1,0 +1,8 @@
+applications:
+  - name: c7-bpsm-ui
+    command: node server/index.js
+    buildpack: nodejs_buildpack
+    memory: 512MB
+    instances: 1
+    services:
+      - phoenix-home

@@ -1,0 +1,80 @@
+{
+  "records": [
+    {
+      "keys": [
+        "user"
+      ],
+      "length": 1,
+      "_fields": [
+        {
+          "identity": {
+            "low": 2242,
+            "high": 0
+          },
+          "labels": [
+            "User"
+          ],
+          "properties": {
+            "persona": "dealer",
+            "primaryPhoneType": "undefined",
+            "city": "SAINT LOUIS",
+            "last_name": "Vales",
+            "hqSapId": "0001024000",
+            "primaryPhone": "undefined",
+            "contact_glopid": "4669bec0-3230-4a4e-89d2-c78caea9bc81",
+            "address_line_1": "undefined",
+            "name": "Jamar Vales",
+            "secondaryPhoneType": "",
+            "state": "undefined",
+            "address_line_2": "undefined",
+            "id": "jamarvales",
+            "federationId": "4669bec0-3230-4a4e-89d2-c78caea9bc81",
+            "brand": "national",
+            "first_name": "Jamar",
+            "secondaryPhone": ""
+          }
+        }
+      ],
+      "_fieldLookup": {
+        "user": 0
+      }
+    },
+    {
+      "keys": [
+        "user"
+      ],
+      "length": 1,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5362,
+            "high": 0
+          },
+          "labels": [
+            "User"
+          ],
+          "properties": {
+            "home_phone": "null",
+            "persona": "grower",
+            "city": "NEW YORK",
+            "last_name": "INC",
+            "hqSapId": "0002048000",
+            "mobile_phone": "43223423432",
+            "contact_glopid": "undefined",
+            "address_line_1": "undefined",
+            "name": "growmark.inc@example.com",
+            "state": "NEW YORK",
+            "address_line_2": "null",
+            "id": "growmark.inc@example.com",
+            "federationId": "fc08153c-6287-4816-a499-3226399dece1",
+            "brand": "national",
+            "first_name": "Growmark"
+          }
+        }
+      ],
+      "_fieldLookup": {
+        "user": 0
+      }
+    },
+  ],
+}

@@ -1,0 +1,57 @@
+${AnsiColor.YELLOW}                                  .***.
+                          ..,**//////////////*
+   .*/////////////***/////////////////////////,
+  ////////////////////////////**,,,,,*//////*,.
+ ,//////**///////////*,,..           .//////,
+ //////,${AnsiColor.GREEN}       .       ./%(${AnsiColor.YELLOW}           //////,
+,/////*.${AnsiColor.GREEN}             *%%%%#.${AnsiColor.YELLOW}          */////,
+,/////*${AnsiColor.GREEN}            .#%%%%%(.${AnsiColor.YELLOW}          ,/////*
+*/////,${AnsiColor.GREEN}           .%%%%%%%/${AnsiColor.YELLOW}           ./////*
+*/////,${AnsiColor.GREEN}           (%%%%%%#,${AnsiColor.YELLOW}           ./////*
+*/////.${AnsiColor.GREEN}           (%%%%%#,${AnsiColor.YELLOW}             /////*
+*/////.${AnsiColor.GREEN}    *%%%%%%%%%%#*.${AnsiColor.YELLOW}              *////*
+*/////.${AnsiColor.GREEN}     *%%%%%%%%%%/      ,/(((*${AnsiColor.YELLOW}   *////*
+/////*${AnsiColor.GREEN}       .#%%%%%%%%%(  .#%%%%%%*${AnsiColor.YELLOW}   */////
+/////*${AnsiColor.GREEN}         .(%%%%%%%%(,%%%%%%%/${AnsiColor.YELLOW}    *////*
+/////,${AnsiColor.GREEN}             .,..*%%%%%%%%%*${AnsiColor.YELLOW}     ,////*
+/////.${AnsiColor.GREEN}                  (%%%%%%#,${AnsiColor.YELLOW}      ,////*
+/////.${AnsiColor.GREEN}        .**//*,.  *%%(/*.${AnsiColor.YELLOW}        ,////*
+////*${AnsiColor.GREEN}         .%%%%%%%%%#%%*${AnsiColor.YELLOW}           ./////
+////*${AnsiColor.GREEN}          ,%%%%%%%%%%%* .*#%%/${AnsiColor.YELLOW}    ./////.
+*///,${AnsiColor.GREEN}           .#%%%%%%%%%(%%%%%%(${AnsiColor.YELLOW}    ./////*
+*///,${AnsiColor.GREEN}             ,#%%%%%%%%%%%%%%/${AnsiColor.YELLOW}     */////.
+*////.${AnsiColor.GREEN}                .,(%%%%%%%%#.${AnsiColor.YELLOW}     ,/////.
+,////*${AnsiColor.GREEN}     /(*.        .#%%%%%%%(.${AnsiColor.YELLOW}      ./////.
+,/////.${AnsiColor.GREEN}    #%%%%%(.    *%%%%%#/,${AnsiColor.YELLOW}         *////.
+./////*${AnsiColor.GREEN}    (%%%%%%%#, .#%%,${AnsiColor.YELLOW}              ,///*
+ /////*${AnsiColor.GREEN}    ,%%%%%%%%%//%%/     *#%%%#.${AnsiColor.YELLOW}   .///*
+ /////*${AnsiColor.GREEN}     *%%%%%%%%%%%#.  *%%%%%%%(.${AnsiColor.YELLOW}   ,///*
+ */////.${AnsiColor.GREEN}     .#%%%%%%%%%* ,#%%%%%%%%*${AnsiColor.YELLOW}    *///*
+ ,/////.${AnsiColor.GREEN}       ./#%%%%%/ *%%%%%%%%%/${AnsiColor.YELLOW}     *///*
+ ,/////.${AnsiColor.GREEN}   ,       ,%%#.*%%%%%%%%%*${AnsiColor.YELLOW}      *///*
+ ./////.${AnsiColor.GREEN}  .%%(,    (%%/.%%%%%%%(,.,*${AnsiColor.YELLOW}     *////
+  /////${AnsiColor.GREEN}    (%%%%%#(%%%*  ..   ,(%%%#.${AnsiColor.YELLOW}    *////.
+  *////.${AnsiColor.GREEN}   .%%%%%%%%%%/     /%%%%%%#.${AnsiColor.YELLOW}    ,////.
+  ,////,${AnsiColor.GREEN}    ,%%%%%%%%%#.  ,%%%%%%%%#.${AnsiColor.YELLOW}    ,////.
+  .////*${AnsiColor.GREEN}      (%%%%%%%%( ,%%%%%%%%%/${AnsiColor.YELLOW}     *////,
+   /////${AnsiColor.GREEN}        *(#%##%%((%%%%%%%%#,${AnsiColor.YELLOW}     *////*
+   *////.${AnsiColor.GREEN}       ....  *%%%%%%%%%%%*${AnsiColor.YELLOW}      /////*
+   ,////.${AnsiColor.GREEN}    *#%%%%%%%/,#%%%%%%%#,  .*/,${AnsiColor.YELLOW} //////.
+   .///*${AnsiColor.GREEN}   .%%%%%%%%%%%%%%%%%(**(%%%%%%,${AnsiColor.YELLOW} ,/////.
+   .///*${AnsiColor.GREEN}  *%%%%%%%%%%%%%%%%%%%%%%%%%%%(.${AnsiColor.YELLOW}  /////,
+   ,///,${AnsiColor.GREEN}   *#%%%%%%%%%%%%%%%%%%%%%%%%%,${AnsiColor.YELLOW}   /////,
+   ,///*${AnsiColor.GREEN}       .,*/(((((/*(%%%%%%%%%%*${AnsiColor.YELLOW}    *////.
+   ,////${AnsiColor.GREEN}                 .%%%%%%%%%%*${AnsiColor.YELLOW}     *////
+   ,////.${AnsiColor.GREEN}                /%%%%%%%%#,${AnsiColor.YELLOW}      *///*
+   .////,${AnsiColor.GREEN}                /%%%%%%#*${AnsiColor.YELLOW}        *///*
+    ////,${AnsiColor.GREEN}                ,%%%%(,${AnsiColor.YELLOW}          *///,
+    ////*           ....,,//////*,,...${AnsiColor.YELLOW}   .///*
+   ./////,   ..,/////////////////////////////,  .${AnsiColor.YELLOW}
+   .//////////////////////////////////////////.
+   */////////***,,,......
+   ,//*.
+${AnsiStyle.NORMAL}
+
+Starting ${AnsiColor.RED} ${application.title}${AnsiStyle.NORMAL} Version:${AnsiColor.RED} ${application.version}
+${AnsiStyle.NORMAL}With:${AnsiColor.RED} Spring boot${AnsiStyle.NORMAL} Version:${AnsiColor.RED}${spring-boot.formatted-version}
+${AnsiStyle.NORMAL}

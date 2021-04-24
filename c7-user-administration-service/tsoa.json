@@ -1,0 +1,14 @@
+{
+  "routes": {
+    "authenticationModule": "./src/server/security/security.ts",
+    "entryFile": "./src/server/v1/rest/router.ts",
+    "routesDir": "./src/server/generated/v1-routes"
+  },
+  "swagger": {
+    "entryFile": "./src/server/v1/rest/router.ts",
+    "outputDirectory": "./src/server/generated/v1-swagger"
+  },
+  "ignore": [
+    "**/node_modules/**"
+  ]
+}

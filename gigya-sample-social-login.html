@@ -1,0 +1,19 @@
+<html>
+<head>
+	<script type="text/javascript" lang="javascript" 
+	   src="https://cdn.gigya.com/js/gigya.js?apikey=3_mK2cmEzLkzhqe4MUrtPncxbv4wKsYAhsew0iVwhVUls3c_Jx_HLX434jAVpq5M_W">
+	</script>	
+</head>
+<body>
+<div id="runningCodeExample" style="border: 1px solid skyblue; padding: 15px; width: 300px; display: block; height: 200px;">
+<p>Please sign in using one of the following providers:</p>
+	<div id="loginDiv"></div>
+	<script type="text/javascript">
+		gigya.socialize.showLoginUI({containerID: "loginDiv", cid:'', width:220, height:60,
+				redirectURL: "/display/GD/Basic+Social+Login+Demo+-+Success+Page",
+				showTermsLink:false // remove 'Terms' link
+				});
+	</script>
+</div>
+</body>
+</html>

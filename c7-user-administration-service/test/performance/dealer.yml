@@ -1,0 +1,27 @@
+# artillery run test/performance/getEntitlements.yml -e local -v '{"token": ""}'
+config:
+  target: 'https://dealer-useradmin-api-np.agro.services'
+  http:
+    timeout: 10
+  variables:
+    federationId: '47a84127667a4c4c8aa003bf86155715'
+  phases:
+    - duration: 1
+      arrivalRate: 2 # warm up
+    - duration: 1
+      arrivalRate: 10 # full throttle
+  environments:
+    local:
+      target: 'http://localhost:3001'
+    nonprod:
+      target: 'https://dealer-useradmin-api-np.agro.services'
+  defaults:
+    headers:
+      Authorization: 'Bearer <gigya token>' # Copy valid Gigya Token Here
+scenarios:
+  - name: 'Get Entitlements and Get Accounts for Dealers'
+    flow:
+      - get:
+          url: '/v1/users/{{ federationId }}/entitlements'
+      - get:
+          url: '/v1/users/{{ federationId }}/accounts'
